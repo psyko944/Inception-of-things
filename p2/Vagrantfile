@@ -1,0 +1,18 @@
+IP="192.168.56.110"
+LOGIN="mekherbo"
+SERVER_HOSTNAME = "#{LOGIN}S"
+Vagrant.configure("2") do |config|
+	config.vm.box = "debian/bookworm64"
+	config.vm.provider "virtualbox" do |vb|
+		vb.memory = 2048
+		vb.cpus = 2
+	end
+
+	config.vm.define "server" do  |server|
+		server.vm.hostname = SERVER_HOSTNAME
+		server.vm.network "private_network", ip: IP
+		server.vm.synced_folder "." , "/vagrant"
+		server.vm.provision "shell", privileged: true, path: "scripts/provision_server.sh", args: [IP]
+	end
+end
+	

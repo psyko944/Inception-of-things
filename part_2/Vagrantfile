@@ -1,8 +1,0 @@
-IP="192.168.56.1"
-vagrant.configure("2") do |config|
-	config.vm.box = "debian/bookworm64"
-	config.vm.provider "virtualbox" do |vb|
-		vb.memory = 1014
-		vb.cpus = 1
-	end
-	
