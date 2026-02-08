@@ -18,3 +18,4 @@ echo "[INFO] ARGUMENT PASSED TO INSTALL_K3S_EXEC: $INSTALL_K3S_EXEC"
 
 curl -sfL https://get.k3s.io | sh -
 echo "K3s Agent installation finished. Worker joining cluster."
+echo "alias k='kubectl'" >> /etc/profile.d/aliases.sh

@@ -14,9 +14,11 @@ echo "Provisioning server with IP: $SERVER_IP"
 export INSTALL_K3S_EXEC="--write-kubeconfig-mode=644 --tls-san $(hostname) --node-ip $SERVER_IP --bind-address=$SERVER_IP --advertise-address=$SERVER_IP"
 curl -sfL https://get.k3s.io |  sh -
 
-
+echo "Waiting for k3s node to be Ready..."
+until kubectl get node | grep -q "Ready"; do
+  sleep 2
+done
 echo "K3s server installation ."
-sleep 15
 mkdir -p ~/.kube
 cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 chmod 600 ~/.kube/config
@@ -24,4 +26,4 @@ cp /var/lib/rancher/k3s/server/node-token /vagrant/scripts/
 echo "check k3s correctly installed"
 kubectl get node
 echo "Vagrant Provisioned Server - IP: $SERVER_IP" > /etc/motd
-ifconfig
+echo "alias k='kubectl'" >> /etc/profile.d/aliases.sh

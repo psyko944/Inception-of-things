@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 		vb.cpus = 2
 	end
 
-	config.vm.define "server" do  |server|
+	config.vm.define SERVER_HOSTNAME do  |server|
 		server.vm.hostname = SERVER_HOSTNAME
 		server.vm.network "private_network", ip: IP
 		server.vm.synced_folder "." , "/vagrant"

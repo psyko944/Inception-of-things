@@ -31,6 +31,7 @@ if [ -d "/vagrant/confs" ]; then
 else
     echo "Error: /vagrant/confs directory not found."
 fi
+echo "alias k='kubectl'" >> /etc/profile.d/aliases.sh
 # echo "installing nginx deployment"
 # kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
 
