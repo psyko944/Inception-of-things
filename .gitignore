@@ -1,0 +1,11 @@
+*node-token
+*.token
+.vagrant/
+.vscode/
+.idea/
+*.pem
+id_rsa*
+*.pub
+kubeconfig.yaml
+.kube/
+*.kubeconfig
